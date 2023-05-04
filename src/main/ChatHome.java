@@ -119,11 +119,13 @@ public class ChatHome {
 		pnListUser.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		pnListUser.add(scrollPane, BorderLayout.CENTER);
 		
 		pnList = new JPanel();
+		pnList.setBackground(Color.WHITE);
 		scrollPane.setViewportView(pnList);
-		pnList.setLayout(new GridLayout(0, 1));
+		pnList.setLayout(new MigLayout("fillx", "5[175.00]", "5[]5"));
 		
 		JPanel pnAvatar = new JPanel();
 		pnAvatar.setLayout(null);
@@ -230,7 +232,7 @@ public class ChatHome {
 	public void loadUser(String user) {
 		List<String> list = con.getListUser(user);
 		for (String i : list) {
-			pnList.add(new User(i));
+			pnList.add(new User(i), "wrap");
 		}
 	}
 	
