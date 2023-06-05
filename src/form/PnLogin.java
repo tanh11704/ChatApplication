@@ -79,7 +79,7 @@ public class PnLogin extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String user = txtTdn.getText();
 				String pass = txtPass.getText();
-				if ((new ConnectDatabase()).checkLogin(user, pass)) {
+				if ((new ConnectDatabase()).checkLogin(user, pass) == true) {
 					JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
 					new ChatHome(user);
 					((Frame) SwingUtilities.getWindowAncestor(PnLogin.this)).dispose();

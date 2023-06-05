@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import Database.ConnectDatabase;
+import Security.*;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -103,8 +104,8 @@ public class PnRegister extends JPanel {
 					JOptionPane.showMessageDialog(null, "Tài khoản đã được đăng kí!");
 				} else {
 					try {
-						imageData = Files.readAllBytes(Paths.get("/Users/trananh/Desktop/VKU/HK2/Lập Trình Java/Chat_Application/src/img/avatar.png"));
-						con.addAccount(user, pass, imageData);
+						imageData = Files.readAllBytes(Paths.get("/Users/trananh/Desktop/VKU/HK2/Lập Trình Java/Chat_Application2/src/img/avatar.png"));
+						con.addAccount(user, Security.BCryption.hashPassword(pass), imageData);
 						JOptionPane.showMessageDialog(null, "Đăng ký thành công!");
 						txtTdn.setText(""); txtPass.setText(""); txtPass2.setText("");
 					} catch (IOException e1) {

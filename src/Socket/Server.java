@@ -31,8 +31,6 @@ public class Server {
                             }
                         }
                     }
-
-                    socket.close(); // đóng kết nối khi client ngắt kết nối
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

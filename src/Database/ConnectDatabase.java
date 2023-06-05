@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class ConnectDatabase {
 	PreparedStatement pst = null;
 	Connection con = null;
@@ -70,12 +72,13 @@ public class ConnectDatabase {
 	public boolean checkLogin(String username, String pass) {
 		try {
 			
-			pst = con.prepareStatement("SELECT * FROM TAIKHOAN WHERE TAIKHOAN = ? AND MATKHAU = ?");
+			pst = con.prepareStatement("SELECT * FROM TAIKHOAN WHERE TAIKHOAN = ?");
 			pst.setString(1, username);
-			pst.setString(2, pass);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				return true;
+				if (BCrypt.checkpw(pass, rs.getString("MATKHAU"))) {
+					return true;
+				}
 			}
 			
 		} catch (Exception e) {
